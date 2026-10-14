@@ -1,24 +1,16 @@
-
-name: Identity Dev CI
+name: Identity Development CI
 
 on:
   push:
     branches:
       - dev
-    paths:
-      - 'platform.identity/**'
-
   pull_request:
     branches:
       - dev
-    paths:
-      - 'platform.identity/**'
-
   workflow_dispatch:
 
 permissions:
   contents: read
-  packages: write
 
 env:
   REGISTRY: ghcr.io
@@ -59,6 +51,10 @@ jobs:
     if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: read
+      packages: write
+
     environment:
       name: Development
 
@@ -75,28 +71,22 @@ jobs:
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v3
         with:
-          registry: ghcr.io
+          registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Verify Dockerfile
-        run: |
-          echo "Current directory:"
-          pwd
-          echo ""
-          echo "Dockerfiles found:"
-          find . -name Dockerfile
-          test -f ./platform.identity/security.api/Dockerfile
+        run: test -f ./identity.api/Dockerfile
 
-      - name: Build and Push Docker Image
+      - name: Build and push Docker image
         uses: docker/build-push-action@v6
         with:
-          context: ./platform.identity
-          file: ./platform.identity/security.api/Dockerfile
+          context: .
+          file: ./identity.api/Dockerfile
           push: true
           tags: |
-            ghcr.io/${{ env.IMAGE_NAME }}:dev
-            ghcr.io/${{ env.IMAGE_NAME }}:${{ github.run_number }}
-            ghcr.io/${{ env.IMAGE_NAME }}:latest
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:dev
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.run_number }}
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
