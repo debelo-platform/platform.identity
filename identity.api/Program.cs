@@ -8,6 +8,7 @@ using Platform.Identity.Application.Interfaces;
 using Platform.Identity.Application.OrganizationManagement;
 using Platform.Identity.Application.PlatformManagement;
 using Platform.Identity.Infrastructure.Identity;
+using identity.infrastructure.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -107,6 +108,40 @@ builder.Services.AddScoped<IOrganizationRoleService, OrganizationRoleService>();
 builder.Services.AddScoped<IOrganizationGroupService, OrganizationGroupService>();
 builder.Services.AddScoped<IOrganizationOnboardingService, OrganizationOnboardingService>();
 builder.Services.AddScoped<IOrganizationUserService, OrganizationUserService>();
+builder.Services.AddOptions<CorsOptions>().Bind(configuration.GetSection("Cors")).Validate(options =>
+            options.AllowedOrigins.Length > 0 &&
+            options.AllowedOrigins.All(
+                origin => Uri.TryCreate(
+                    origin,
+                    UriKind.Absolute,
+                    out var uri) &&
+                    (uri.Scheme == Uri.UriSchemeHttp ||
+                     uri.Scheme == Uri.UriSchemeHttps) &&
+                    string.IsNullOrEmpty(uri.PathAndQuery.Trim('/')) &&
+                    string.IsNullOrEmpty(uri.Fragment)),
+        "CORS must contain valid allowed origins.")
+    .ValidateOnStart();
+
+var corsOptions = configuration
+    .GetSection("Cors")
+    .Get<CorsOptions>() ?? new CorsOptions();
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("DebeloCors", policy =>
+    {
+        policy
+            .WithOrigins(corsOptions.AllowedOrigins)
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+
+        if (corsOptions.AllowCredentials)
+        {
+            policy.AllowCredentials();
+        }
+    });
+});
+
 
 builder.Services.AddHealthChecks();
 
@@ -150,6 +185,8 @@ app.UseMiddleware<GlobalExceptionHandler>();
 
 app.UseRouting();
 
+app.UseCors("DebeloCors");
+
 app.UseAuthentication();
 
 app.UseMiddleware<OrganizationMembershipMiddleware>();
@@ -161,11 +198,7 @@ app.MapHealthChecks("/health");
 
 app.Run();
 
-static void ConfigureSwagger(
-    IServiceCollection services,
-    IdentityOptions identityOptions,
-    IHostEnvironment environment,
-    IConfiguration configuration)
+static void ConfigureSwagger(IServiceCollection services, IdentityOptions identityOptions, IHostEnvironment environment, IConfiguration configuration)
 {
     services.AddSwaggerGen(options =>
     {
@@ -180,9 +213,7 @@ static void ConfigureSwagger(
             return;
         }
 
-        var authority = (
-            configuration["IdentityProvider:SwaggerAuthority"]
-            ?? "http://localhost:8081").TrimEnd('/');
+        var authority = (configuration["IdentityProvider:SwaggerAuthority"] ?? "http://localhost:8081").TrimEnd('/');
 
         var realm = identityOptions.Realm;
 
