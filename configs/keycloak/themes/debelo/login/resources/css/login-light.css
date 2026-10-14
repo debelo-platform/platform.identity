@@ -1,0 +1,223 @@
+/* ==============================
+   GLOBAL
+============================== */
+body.custom-login-body {
+    margin: 0;
+    font-family: "Inter", sans-serif;
+    background: linear-gradient(135deg, #fff9e5 0%, #fff3c4 100%);
+    color: #2b2b2b;
+    overflow: hidden;
+}
+
+/* ==============================
+   LAYOUT
+============================== */
+.page-container {
+    position: relative;
+    min-height: 100vh;
+}
+
+/* ==============================
+   BRAND BACKGROUND
+============================== */
+.brand-background {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    padding-left: 10%;
+}
+
+/* ==============================
+   BRAND TEXT
+============================== */
+.brand-content {
+    position: relative;
+    z-index: 2;
+    max-width: 480px;
+}
+
+.brand-content h1 {
+    font-size: 5rem;
+    font-weight: 900;
+    color: #cfa000;
+    letter-spacing: -1px;
+}
+
+.brand-content p {
+    margin-top: 20px;
+    font-size: 1.3rem;
+    line-height: 1.7;
+    color: #6a5a2b;
+}
+
+/* ==============================
+   WOVEN THREADS (ANIMATED)
+============================== */
+.woven-fabric {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+}
+
+/* thread lines */
+.thread {
+    position: absolute;
+    width: 140%;
+    height: 2px;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(212,166,0,0.3),
+        rgba(212,166,0,0.6),
+        rgba(212,166,0,0.3),
+        transparent
+    );
+
+    opacity: 0.5;
+
+    animation: floatThread 12s ease-in-out infinite alternate;
+}
+
+/* different speeds */
+.t1 { top: 20%; }
+.t2 { top: 35%; animation-duration: 14s; }
+.t3 { top: 55%; animation-duration: 16s; }
+.t4 { top: 70%; animation-duration: 18s; }
+
+/* glow nodes */
+.thread::after {
+    content: "";
+    position: absolute;
+    left: 40%;
+    width: 6px;
+    height: 6px;
+    background: #d4a600;
+    border-radius: 50%;
+    box-shadow: 0 0 12px rgba(212,166,0,0.7);
+}
+
+/* animation */
+@keyframes floatThread {
+    from { transform: translateY(0px); }
+    to { transform: translateY(15px); }
+}
+
+/* ==============================
+   FABRIC GLOW
+============================== */
+.fabric-glow {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(212,166,0,0.18), transparent 70%);
+    top: -150px;
+    right: -150px;
+    filter: blur(60px);
+    transition: transform 0.2s ease-out;
+}
+
+/* ==============================
+   LOGIN POSITION
+============================== */
+.login-container {
+    position: relative;
+    z-index: 3;
+    height: 100vh;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 10%;
+}
+
+/* ==============================
+   LOGIN CARD
+============================== */
+.login-card {
+    width: 420px;
+    padding: 52px 44px;
+    border-radius: 24px;
+
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(14px);
+
+    box-shadow:
+        0 40px 100px rgba(212,166,0,0.2),
+        0 10px 30px rgba(0,0,0,0.06);
+
+    transition: all 0.3s ease;
+}
+
+.login-card:hover {
+    transform: translateY(-4px) scale(1.01);
+}
+
+/* ==============================
+   HEADER
+============================== */
+.login-header h2 {
+    margin: 0;
+    font-size: 1.9rem;
+}
+
+.login-header p {
+    margin-top: 8px;
+    margin-bottom: 30px;
+    color: #8a7a45;
+}
+
+/* ==============================
+   INPUTS
+============================== */
+.login-card input {
+    width: 100%;
+    height: 50px;
+    margin-bottom: 18px;
+
+    border-radius: 14px;
+    border: 1px solid #f1e2a3;
+    background: #fffdf4;
+
+    padding: 0 16px;
+    font-size: 14px;
+    transition: all 0.2s;
+}
+
+.login-card input:focus {
+    border-color: #cfa000;
+    box-shadow: 0 0 0 4px rgba(212,166,0,0.25);
+    outline: none;
+}
+
+/* ==============================
+   BUTTON
+============================== */
+.login-card button {
+    width: 100%;
+    height: 50px;
+    border-radius: 14px;
+    border: none;
+
+    background: linear-gradient(135deg, #d4a600, #b88a00);
+    color: white;
+    font-weight: 600;
+
+    cursor: pointer;
+    transition: all 0.25s;
+}
+
+.login-card button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 12px 30px rgba(212,166,0,0.4);
+}
+
+/* ==============================
+   FOOTER
+============================== */
+.login-footer {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 12px;
+    color: #9a8b5a;
+}

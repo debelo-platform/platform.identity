@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+	<TargetFramework>net10.0</TargetFramework>
+	<Nullable>enable</Nullable>
+	<ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="Identity\Models\IdentityCreateUsercs.cs" />
+  </ItemGroup>
+  <ItemGroup>
+	<ProjectReference Include="..\identity.application\identity.application.csproj" />
+  </ItemGroup>
+	<ItemGroup>
+	<PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="10.0.12" />
+	<PackageReference Include="Microsoft.Extensions.Http" Version="10.0.12" />
+	<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.12" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,104 @@
+/* --- Page Setup --- */
+body,
+body.kcBodyClass,
+.login-pf body,
+.pf-v5-c-login {
+  background: #f7f9fc !important;
+  background-image: none !important;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* --- Center and blur login card --- */
+#kc-content,
+#kc-content-wrapper,
+.pf-v5-c-login__main .pf-v5-c-card {
+  background: rgba(255, 255, 255, 0.85) !important; /* semi-transparent */
+  backdrop-filter: blur(10px);                        /* blur effect */
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  padding: 32px 28px;
+  max-width: 400px;
+  width: 90%;
+  box-sizing: border-box;
+  transition: all 0.3s ease-in-out;
+}
+
+/* --- Page title --- */
+#kc-page-title {
+  color: #1f2937 !important;
+  text-align: center;
+  margin-bottom: 24px;
+  font-weight: 600;
+  font-size: 1.4rem;
+}
+
+/* --- Input fields --- */
+.pf-v5-c-form__group label {
+  color: #374151;
+  font-weight: 500;
+}
+
+.pf-v5-c-form__control {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 14px;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+}
+
+/* --- Submit button --- */
+#kc-login {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 8px;
+  background-color: #2563eb;
+  color: white;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+#kc-login:hover {
+  background-color: #1e40af;
+}
+
+/* --- Links: registration / forgot password --- */
+.kc-login-link,
+.kc-form-options a {
+  text-decoration: none;
+  color: #2563eb;
+  font-size: 0.875rem;
+}
+
+.kc-login-link:hover,
+.kc-form-options a:hover {
+  text-decoration: underline;
+}
+
+/* --- Responsive adjustments --- */
+@media (max-width: 480px) {
+  #kc-content,
+  #kc-content-wrapper,
+  .pf-v5-c-login__main .pf-v5-c-card {
+    padding: 24px 20px;
+    width: 95%;
+  }
+
+  #kc-page-title {
+    font-size: 1.2rem;
+  }
+
+  #kc-login {
+    font-size: 15px;
+    padding: 12px;
+  }
+}

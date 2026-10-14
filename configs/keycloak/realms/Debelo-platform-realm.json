@@ -1,0 +1,89 @@
+
+{
+  "realm": "Debelo-platform",
+  "enabled": true,
+  "displayName": "Debelo Platform",
+  "sslRequired": "external",
+  "loginWithEmailAllowed": true,
+  "duplicateEmailsAllowed": false,
+  "loginTheme": "platform",
+  "accountTheme": "platform",
+  "emailTheme": "platform",
+  "organizationsEnabled": true,
+  "smtpServer": {
+    "host": "smtp.gmail.com",
+    "port": "465",
+    "from": "amanuel.eshete1@gmail.com",
+    "fromDisplayName": "Debelo Platform",
+    "replyTo": "amanuel.eshete1@gmail.com",
+    "replyToDisplayName": "Debelo Platform",
+    "auth": "true",
+    "user": "amanuel.eshete1@gmail.com",
+    "password": "YOUR_NEW_GOOGLE_APP_PASSWORD",
+    "starttls": "false",
+    "ssl": "true"
+  },
+  "organizations": [
+    {
+      "name": "Menagn Corporation",
+      "alias": "ms"
+    }
+  ],
+  "clients": [
+    {
+      "clientId": "debelo",
+      "name": "Debelo Platform",
+      "protocol": "openid-connect",
+      "enabled": true,
+      "publicClient": false,
+      "clientAuthenticatorType": "client-secret",
+      "secret": "ShxxjZKYS9JMLwRyi0fBanG0InzbnbhY",
+      "adminUrl": "http://localhost:8080",
+      "standardFlowEnabled": true,
+      "directAccessGrantsEnabled": true,
+      "redirectUris": [
+        "http://localhost:8080/swagger/oauth2-redirect.html"
+      ],
+      "webOrigins": [
+        "http://localhost:8080"
+      ],
+      "fullScopeAllowed": true,
+      "attributes": {
+        "login_theme": "platform",
+        "post.logout.redirect.uris": "http://localhost:8080/oauth2/start"
+      }
+    }
+  ],
+  "users": [
+    {
+      "username": "admin",
+      "enabled": true,
+      "emailVerified": true,
+      "firstName": "Amanuel",
+      "lastName": "Eshete",
+      "email": "amanuel.eshete1@gmail.com",
+      "credentials": [
+        {
+          "type": "password",
+          "value": "admin",
+          "temporary": false
+        }
+      ]
+    },
+    {
+      "username": "user",
+      "enabled": true,
+      "emailVerified": true,
+      "firstName": "Platform",
+      "lastName": "User",
+      "email": "user@debelo.com",
+      "credentials": [
+        {
+          "type": "password",
+          "value": "user",
+          "temporary": false
+        }
+      ]
+    }
+  ]
+}

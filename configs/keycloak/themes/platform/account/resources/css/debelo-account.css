@@ -1,0 +1,37 @@
+[data-page-id="account"] {
+    --pf-v5-global--primary-color--100: #1769aa;
+    --pf-v5-global--primary-color--200: #125586;
+    --pf-v5-global--link--Color: #125586;
+    --pf-v5-global--BackgroundColor--100: #f3f6fa;
+    --pf-v5-global--Color--100: #172b4d;
+}
+
+[data-page-id="account"] .pf-v5-c-page {
+    color: #172b4d;
+    background: #f3f6fa;
+}
+
+[data-page-id="account"] .pf-v5-c-masthead,
+[data-page-id="account"] .pf-v5-c-page__sidebar {
+    background-color: #fff;
+}
+
+[data-page-id="account"] .pf-v5-c-button.pf-m-primary {
+    border-radius: 0.5rem;
+    background-color: #1769aa;
+}
+
+[data-page-id="account"] .pf-v5-c-button.pf-m-primary:hover {
+    background-color: #125586;
+}
+
+[data-page-id="account"] :is(a, button, input, select, textarea):focus-visible {
+    outline: 3px solid #1769aa;
+    outline-offset: 2px;
+}
+
+@media (max-width: 640px) {
+    [data-page-id="account"] .pf-v5-c-page {
+        min-width: 0;
+    }
+}

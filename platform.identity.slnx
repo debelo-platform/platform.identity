@@ -1,0 +1,9 @@
+<Solution>
+  <Project Path="docker-compose.dcproj">
+    <Build />
+  </Project>
+  <Project Path="identity.api.tests/identity.api.tests.csproj" />
+  <Project Path="identity.api/identity.api.csproj" />
+  <Project Path="identity.application/identity.application.csproj" />
+  <Project Path="identity.infrastructure/identity.infrastructure.csproj" />
+</Solution>
