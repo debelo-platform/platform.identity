@@ -4,13 +4,14 @@ services:
       ASPNETCORE_ENVIRONMENT: Development
       ASPNETCORE_HTTP_PORTS: "8080"
 
-      # Used by the API container to communicate with Keycloak.
-      IdentityProvider__BaseUrl: http://identity-provider:8080
+      # Internal URL for API-to-Keycloak communication.
+      IdentityProvider__BaseUrl: "http://identity-provider:8080"
 
-      # Used by the browser for Swagger OAuth login.
-      IdentityProvider__SwaggerAuthority: http://localhost:8081
-      IdentityProvider__SwaggerClientId: debelo
-      IdentityProvider__SwaggerRedirectUrl: http://localhost:8080/swagger/oauth2-redirect.html
+      # Public URL for JWT issuer validation and Swagger login.
+      IdentityProvider__SwaggerAuthority: "http://localhost:8081"
+
+      IdentityProvider__SwaggerClientId: "debelo"
+      IdentityProvider__SwaggerRedirectUrl: "http://localhost:8080/swagger/oauth2-redirect.html"
 
     ports:
       - "8080:8080"
